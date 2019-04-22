@@ -10,6 +10,14 @@
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+    <div class="uk-navbar-left">
+        <ul class="uk-navbar-nav">
+            <li class="uk-active"><%= link_to 'ABCode', root_path %></li>
+            <li><%= link_to 'Dashboard', root_path %></li>
+        </ul>
+    </div>
+</nav>
+    <div class="uk-container"><%= yield %></div>
   </body>
 </html>
