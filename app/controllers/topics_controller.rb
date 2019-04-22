@@ -15,6 +15,7 @@ class TopicsController < ApplicationController
   # GET /topics/new
   def new
     @topic = Topic.new
+    @courses = Course.all
   end
 
   # GET /topics/1/edit
@@ -24,6 +25,7 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.json
   def create
+    @courses = Course.all
     @topic = Topic.new(topic_params)
 
     respond_to do |format|
@@ -69,6 +71,6 @@ class TopicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def topic_params
-      params.require(:topic).permit(:name, :description)
+      params.require(:topic).permit(:name, :description, :course)
     end
 end

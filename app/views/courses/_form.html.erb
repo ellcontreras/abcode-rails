@@ -22,13 +22,13 @@
   </div>
 
   <div class="field">
-    <%= form.label "Selecciona una categoria" %>
-    <%= form.select :category, class: "uk-select"
-      options_for_select([['Fundamentos de programación', 'fundamentos']]),
+    <%= form.label "Selecciona una categoria:" %>
+    <%= form.select :category, options_for_select({ "Fundamentos de programación" => "fundamentos",
+    "Aplicaciones web" => "web" }),
       data: { placeholder: "Categories" } %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Crear curso", class: "uk-button uk-button-primary"%>
   </div>
 <% end %>
