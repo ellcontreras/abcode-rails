@@ -1,19 +1,14 @@
-<p id="notice"><%= notice %></p>
+<div class="uk-container">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @course.name %>
-</p>
+  <h2 class="uk-text-center"><%= @course.name %></h2>
+  
+  <%= @course.description.capitalize %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @course.description %>
-</p>
+  <p>
+    <strong>Category:</strong>
+    <%= @course.category %>
+  </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @course.category %>
-</p>
-
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+  <%= link_to 'Editar', edit_course_path(@course) %> |
+</div>
