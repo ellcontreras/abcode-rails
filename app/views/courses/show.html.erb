@@ -10,5 +10,11 @@
     <%= @course.category %>
   </p>
 
+  <% @course.topics.each do |topic| %>
+    <%= link_to topic.name, course_topic_path(@course, topic) %><br>
+  <% end %>
+
+
+  <%= link_to 'Agregar un tema', new_course_topic_path(@course) %>
   <%= link_to 'Editar', edit_course_path(@course) %>
 </div>
