@@ -26,9 +26,11 @@ class LessonsController < ApplicationController
   def create
     @lesson = Lesson.new(lesson_params)
 
+    @lesson.topic_id = params[:topic_id]
+
     respond_to do |format|
       if @lesson.save
-        format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
+        format.html { redirect_to course_topic_lessons_path(@lesson), notice: 'La lección se creó correctamente' }
         format.json { render :show, status: :created, location: @lesson }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class LessonsController < ApplicationController
   def update
     respond_to do |format|
       if @lesson.update(lesson_params)
-        format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }
+        format.html { redirect_to course_topic_lesson_path(@lesson), notice: 'La lección se actualizó correctamente.' }
         format.json { render :show, status: :ok, location: @lesson }
       else
         format.html { render :edit }
@@ -56,7 +58,7 @@ class LessonsController < ApplicationController
   def destroy
     @lesson.destroy
     respond_to do |format|
-      format.html { redirect_to lessons_url, notice: 'Lesson was successfully destroyed.' }
+      format.html { redirect_to course_topic_lessons_path, notice: 'La lección de destruyó correctamente' }
       format.json { head :no_content }
     end
   end
@@ -70,5 +72,9 @@ class LessonsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
       params.require(:lesson).permit(:name, :content, :is_quiz)
+    end
+
+    def quiz_params
+      params.require(:quiz).permit(:quiz_name, :quiz_content, :quiz_answer1, :quiz_answer2, :quiz_answer3)
     end
 end

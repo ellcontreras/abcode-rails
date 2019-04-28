@@ -1,4 +1,9 @@
-<p id="notice"><%= notice %></p>
+<% if !notice.nil? %>
+  <div class="uk-alert-success" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p><%= notice %></p>
+  </div>
+<% end %>
 
 <h1>Lessons</h1>
 
@@ -18,9 +23,9 @@
         <td><%= lesson.name %></td>
         <td><%= lesson.content %></td>
         <td><%= lesson.is_quiz %></td>
-        <td><%= link_to 'Show', lesson %></td>
-        <td><%= link_to 'Edit', edit_lesson_path(lesson) %></td>
-        <td><%= link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', course_topic_lesson_path(params[:course_id], params[:topic_id], lesson) %></td>
+        <td><%= link_to 'Edit', edit_course_topic_lesson_path(params[:course_id], params[:topic_id], lesson) %></td>
+        <td><%= link_to 'Destroy', course_topic_lesson_path(params[:course_id], params[:topic_id], lesson), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

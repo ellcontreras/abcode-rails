@@ -1,4 +1,9 @@
-<p id="notice"><%= notice %></p>
+<% if !notice.nil? %>
+  <div class="uk-alert-success" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p><%= notice %></p>
+  </div>
+<% end %>
 
 <h1>Topics</h1>
 
@@ -16,7 +21,7 @@
       <tr>
         <td><%= topic.name %></td>
         <td><%= topic.description %></td>
-        <td><%= link_to 'Show', course_topics_path(topic) %></td>
+        <td><%= link_to 'Show', course_topic_path(params[:course_id], topic) %></td>
         <td><%= link_to 'Edit', edit_course_topic_path(topic.course_id, topic) %></td>
         <td><%= link_to 'Destroy', course_topic_path(topic.course_id, topic), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

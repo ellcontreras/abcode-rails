@@ -1,15 +1,26 @@
-<p id="notice"><%= notice %></p>
+<% if !notice.nil? %>   <div class="uk-alert-success" uk-alert>     <a class="uk-alert-close" uk-close></a>     <p><%= notice %></p>   </div> <% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @topic.name %>
-</p>
+<span class="uk-label">Curso de <%= @topic.course.name %></span>
 
-<p>
-  <strong>Description:</strong>
-  <%= @topic.description %>
-</p>
 
-<%= link_to 'Agregar una lección', new_course_topic_lesson_path(@topic.course_id, @topic) %>
-<%= link_to 'Edit', edit_course_topic_path(@topic) %> |
-<%= link_to 'Back', course_topics_path %>
+<div class="uk-container">
+  <h1 class="uk-text-center"><%= @topic.name %></h1>
+
+  <p>
+    <strong>Description:</strong>
+    <%= @topic.description %>
+  </p>
+
+  <h3>Lecciones de este tema</h3>
+  <% @lessons.each do |lesson| %>
+    <%= link_to lesson.name, course_topic_lesson_path(@topic.course, @topic, lesson) %>
+  <% end %>
+
+  <hr>
+
+  <%= link_to 'Agregar una lección', new_course_topic_lesson_path(@topic.course_id, @topic) %>
+  <%= link_to 'Edit', edit_course_topic_path(@topic) %>
+  <%= link_to 'Delete', course_topic_path(@topic), method: :delete %>
+  <%= link_to 'Back', course_topics_path %>
+
+</div>

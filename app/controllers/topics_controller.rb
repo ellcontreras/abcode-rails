@@ -10,6 +10,7 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.json
   def show
+    @lessons = Lesson.where("topic_id", params[:id])
   end
 
   # GET /topics/new
@@ -31,7 +32,7 @@ class TopicsController < ApplicationController
     @courses = Course.all
     @topic = Topic.new(topic_params)
 
-    @topic.course = Course.find(params[:course])
+    @topic.course = Course.find(params[:course_id])
 
     respond_to do |format|
       if @topic.save

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_23_224317) do
+ActiveRecord::Schema.define(version: 2019_04_28_191109) do
 
   create_table "courses", force: :cascade do |t|
     t.string "name"
@@ -28,6 +28,19 @@ ActiveRecord::Schema.define(version: 2019_04_23_224317) do
     t.datetime "updated_at", null: false
     t.integer "topic_id"
     t.index ["topic_id"], name: "index_lessons_on_topic_id"
+  end
+
+  create_table "quizzes", force: :cascade do |t|
+    t.string "name"
+    t.string "answer1"
+    t.string "answer2"
+    t.string "answer3"
+    t.boolean "which_correct"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "lesson_id"
+    t.string "content"
+    t.index ["lesson_id"], name: "index_quizzes_on_lesson_id"
   end
 
   create_table "topics", force: :cascade do |t|

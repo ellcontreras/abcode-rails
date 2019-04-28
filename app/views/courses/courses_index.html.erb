@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<% if !notice.nil? %>   <div class="uk-alert-success" uk-alert>     <a class="uk-alert-close" uk-close></a>     <p><%= notice %></p>   </div> <% end %>
 
 <h1 class="uk-text-center">Courses</h1>
 

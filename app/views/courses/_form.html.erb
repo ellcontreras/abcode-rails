@@ -11,21 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="uk-margin">
     <%= form.label :name %>
     <%= form.text_field :name, class: "uk-input" %>
   </div>
 
-  <div class="field">
+  <div class="uk-margin">
     <%= form.label :description %>
     <%= form.text_area :description, class: "uk-textarea" %>
   </div>
 
-  <div class="field">
+  <div class="uk-margin">
     <%= form.label "Selecciona una categoria:" %>
-    <%= form.select :category, options_for_select({ "Fundamentos de programación" => "fundamentos",
+    <%= select_tag(:category, options_for_select({ "Fundamentos de programación" => "fundamentos",
     "Aplicaciones web" => "web" }),
-      data: { placeholder: "Categories" } %>
+      data: { placeholder: "Categories" }, class: "uk-select")%>
   </div>
 
   <div class="actions">

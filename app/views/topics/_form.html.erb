@@ -11,26 +11,15 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
+  <div class="uk-margin">
+    <%= form.label :nombre %>
     <%= form.text_field :name, class: "uk-input" %>
   </div>
 
-  <br>
-
-  <div class="field">
-    <%= form.label :description %>
+  <div class="uk-margin">
+    <%= form.label :descripción %>
     <%= form.text_area :description, class: "uk-textarea" %>
   </div>
-
-  <div class="field">
-    <%= form.label "Curso al que pertenece" %>
-    <br>
-    <%= select_tag(:course,
-      options_from_collection_for_select(@courses, "id", "name")) %>
-  </div>
-
-  <br><br>
 
   <div class="actions">
     <%= form.submit "Crear topic", class: "uk-button uk-button-primary" %>

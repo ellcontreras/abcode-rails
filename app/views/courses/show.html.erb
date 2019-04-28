@@ -1,7 +1,7 @@
 <div class="uk-container">
-  <p id="notice"><%= notice %></p>
+  <% if !notice.nil? %>   <div class="uk-alert-success" uk-alert>     <a class="uk-alert-close" uk-close></a>     <p><%= notice %></p>   </div> <% end %>
 
-  <h2 class="uk-text-center"><%= @course.name %></h2>
+  <h2 class="uk-text-center">Curso de <%= @course.name %></h2>
   
   <%= @course.description.capitalize %>
 
@@ -10,11 +10,13 @@
     <%= @course.category %>
   </p>
 
+  <hr>
+  <h2>Temas del curso</h2>
   <% @course.topics.each do |topic| %>
     <%= link_to topic.name, course_topic_path(@course, topic) %><br>
   <% end %>
 
-
+  <hr class="uk-divider-small">
   <%= link_to 'Agregar un tema', new_course_topic_path(@course) %>
   <%= link_to 'Editar', edit_course_path(@course) %>
 </div>

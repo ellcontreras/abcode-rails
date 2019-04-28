@@ -1,5 +1,83 @@
-<h1>New Lesson</h1>
+<h1>Nueva lección</h1>
 
-<%= render 'form', lesson: @lesson %>
+<%= form_with(model: @lesson, local: true, url: course_topic_lessons_path(params[:course_id], params[:topic_id])) do |form| %>
+  <% if @lesson.errors.any? %>
+    <div id="error_explanation">
+        <div class="uk-alert-danger" uk-alert>
+            <a class="uk-alert-close" uk-close></a>
+            <p><%= pluralize(lesson.errors.count, "error") %> prohibited this lesson from being saved:</p>
+        </div>
+
+      <% @lesson.errors.full_messages.each do |message| %>
+        <div class="uk-alert-success" uk-alert>
+            <a class="uk-alert-close" uk-close></a>
+            <p><%= message %></p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="uk-margin">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "uk-input" %>
+  </div>
+
+  <div class="uk-margin">
+    <%= form.label :content %>
+    <%= form.text_area :content, class: "uk-textarea" %>
+  </div>
+
+  <div class="uk-margin">
+    <%= form.label :is_quiz %>
+    <%= select_tag(:is_quiz, options_for_select([["si", true], ["No", false]]), class: "uk-select", default: false)%>  
+  </div>
+
+  <div id="is-quiz">
+    <h3>Agregar un quiz</h3>
+    <div class="uk-margin">
+      <%= form.text_field :quiz_name, class: "uk-input", placeholder: "Nombre del quiz" %>
+    </div>
+    <div class="uk-margin">
+      <%= form.text_area :quiz_content, class: "uk-textarea", placeholder: "Contenido del quiz" %>
+    </div>
+    <div class="uk-margin">
+      <%= form.text_field :quiz_answer1, class: "uk-input", placeholder: "Respuesta 1" %>
+    </div>
+    <div class="uk-margin">
+      <%= form.text_field :quiz_answer2, class: "uk-input", placeholder: "Respuesta 1" %>
+    </div>
+    <div class="uk-margin">
+      <%= form.text_field :quiz_answer3, class: "uk-input", placeholder: "Respuesta 1" %>
+    </div>
+    <div class="uk-margin">
+      <%= form.label "Cual es la respuesta correcta" %>
+      <%= select_tag(:quiz_which_correct, options_for_select([["Respuesta 1", 1], ["Respuesta 2", 2], ["Respuesta 3", 3]]), class: "uk-select")%>
+    </div>
+  </div>
+
+  <div class="submit">
+    <%= form.submit "Guardar lección", class: "uk-button uk-button-primary" %>
+  </div>
+<% end %>
+
+<script>
+var isQuiz = document.getElementById("is-quiz");
+var isQuizSelect = document.getElementById("is_quiz");
+
+var isSelected = isQuizSelect.value;
+isQuiz.style.display = "none";
+
+isQuizSelect.addEventListener("change", val => {
+  isSelected = JSON.parse(val.target.value);
+
+  if (isSelected) {
+    isQuiz.style.display = "block";
+  } else { 
+    isQuiz.style.display = "none";
+  }
+})
+
+</script>
+
 
 <%= link_to 'Back', course_topic_lessons_path %>

@@ -1,19 +1,23 @@
-<p id="notice"><%= notice %></p>
+<% if !notice.nil? %>
+  <div class="uk-alert-success" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p><%= notice %></p>
+  </div>
+<% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @lesson.name %>
-</p>
+<div class="uk-container">
+  <h1 class="uk-text-center"><%= @lesson.name %></h1>
 
-<p>
-  <strong>Content:</strong>
-  <%= @lesson.content %>
-</p>
+  <p>
+    <strong>Content:</strong>
+    <%= @lesson.content %>
+  </p>
 
-<p>
-  <strong>Is quiz:</strong>
-  <%= @lesson.is_quiz %>
-</p>
+  <p>
+    <strong>Is quiz:</strong>
+    <%= @lesson.is_quiz %>
+  </p>
+</div>
 
-<%= link_to 'Edit', edit_lesson_path(@lesson) %> |
-<%= link_to 'Back', lessons_path %>
+<%= link_to 'Edit', edit_course_topic_lesson_path(@lesson) %> |
+<%= link_to 'Back', course_topic_lessons_path %>
