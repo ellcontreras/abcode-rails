@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :courses do
-    resources :topics
+    resources :topics do
+      resources :lessons
+    end
   end
 
   get "/dashboard" => "dashboard#index"

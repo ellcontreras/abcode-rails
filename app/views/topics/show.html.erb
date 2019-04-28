@@ -10,5 +10,6 @@
   <%= @topic.description %>
 </p>
 
+<%= link_to 'Agregar una lección', new_course_topic_lesson_path(@topic.course_id, @topic) %>
 <%= link_to 'Edit', edit_course_topic_path(@topic) %> |
 <%= link_to 'Back', course_topics_path %>
