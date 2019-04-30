@@ -1,27 +1,29 @@
-<%= form_with(model: topic, local: true, url: course_topics_url) do |form| %>
-  <% if topic.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+<div class="uk-container">
+  <%= form_with(model: topic, local: true, url: course_topics_url) do |form| %>
+    <% if topic.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
 
-      <ul>
-      <% topic.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% topic.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="uk-margin">
+      <%= form.label :nombre %>
+      <%= form.text_field :name, class: "uk-input" %>
+    </div>
+
+    <div class="uk-margin">
+      <%= form.label :descripción %>
+      <%= form.text_area :description, class: "uk-textarea" %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Crear topic", class: "uk-button uk-button-primary" %>
     </div>
   <% end %>
-
-  <div class="uk-margin">
-    <%= form.label :nombre %>
-    <%= form.text_field :name, class: "uk-input" %>
-  </div>
-
-  <div class="uk-margin">
-    <%= form.label :descripción %>
-    <%= form.text_area :description, class: "uk-textarea" %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Crear topic", class: "uk-button uk-button-primary" %>
-  </div>
-<% end %>
+</div>

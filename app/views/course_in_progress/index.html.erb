@@ -1,0 +1,33 @@
+<div uk-grid>
+    <div class="uk-width-3-4">
+        <h2 class="uk-text-center">Curso de <%= @course.name %></h2>
+    </div>
+    <div class="uk-width-1-4 uk-background-primary uk-padding-small">
+        <h2 class="uk-text-center text-white">Temario</h2>
+        <dl class="uk-description-list">
+            <% @topics.each do |topic| %>
+                <div class="uk-padding-small">
+                    <% if (topic.id == @actual_topic.id) %>
+                        <div class="uk-background-muted uk-padding-small">
+                            <dt><%= topic.name %></dt>
+                            <dd class="uk-description-list">
+                                <% topic.lessons.each do |lesson| %>
+                                    <dd><%= lesson.name %></dd>
+                                <% end %>
+                            </dd>
+                        </div>
+                    <% else %>
+                        <div class="uk-padding-small text-white">
+                            <dt><%= topic.name %></dt>
+                            <dd class="uk-description-list">
+                                <% topic.lessons.each do |lesson| %>
+                                    <dd><%= lesson.name %></dd>
+                                <% end %>
+                            </dd>
+                        </div>
+                    <% end %>
+                </div>
+            <% end %>
+        </dl>
+    </div>
+</div>
