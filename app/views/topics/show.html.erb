@@ -6,10 +6,10 @@
 <div class="uk-container">
   <h1 class="uk-text-center"><%= @topic.name %></h1>
 
-  <p>
     <strong>Description:</strong>
-    <%= @topic.description %>
-  </p>
+    <div class="fr-view">
+      <%= @topic.description.html_safe %>
+    </div>
 
   <h3>Lecciones de este tema</h3>
   <% @lessons.each do |lesson| %>
@@ -24,3 +24,7 @@
   <%= link_to 'Back', course_topics_path %>
 
 </div>
+
+<script>
+  $('#preview').html('<%= @topic.description %>');
+</script>
