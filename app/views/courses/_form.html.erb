@@ -24,9 +24,7 @@
 
   <div class="uk-margin">
     <%= form.label "Selecciona una categoria:" %>
-    <%= select_tag(:category, options_for_select({ "Fundamentos de programación" => "fundamentos",
-    "Aplicaciones web" => "web" }),
-      data: { placeholder: "Categories" }, class: "uk-select")%>
+    <%= select_tag(:category, options_for_select([["Fundamentos de programación", "fundamentos"], ["Desarrollo web", "web"]]), class: "uk-select")%>
   </div>
 
   <div class="actions">
