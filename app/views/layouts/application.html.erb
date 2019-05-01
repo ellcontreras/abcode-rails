@@ -13,13 +13,20 @@
     <nav class="uk-navbar-container navbar-background" uk-navbar>
       <div class="uk-navbar-center">
           <ul class="uk-navbar-nav">
+              <% if user_signed_in? %>
+                <li><%= link_to 'Cerrar Sesión', destroy_user_session_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to "Iniciar Sesión", new_user_session_path %></li>
+              <% end %>
               <li><%= link_to 'Cursos', "cursos" %></li>
-              <li><%= link_to "Iniciar Sesión", new_user_session_path %></li>
               <li class="uk-active">
                 <a href="/"><b>ABCode</b></a>
               </li>
-              <li><%= link_to 'Dashboard', dashboard_path %></li>
-              <li><%= link_to "Registro", new_user_registration_path %></li>
+              <% if user_signed_in? %>
+                <li><%= link_to 'Dashboard', dashboard_path %></li>
+              <% else %>
+                <li><%= link_to "Registro", new_user_registration_path %></li>
+              <% end %>
           </ul>
       </div>
   </nav>

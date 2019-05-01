@@ -1,6 +1,23 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
+  def add_course_to_user
+    @course_user = CourseUser.new
+
+    @course_user.user = current_user
+    @course_user.course = Course.find(params[:id])
+
+    respond_to do |format|
+      if @course_user.save
+        format.html { redirect_to course_path(params[:id]), notice: 'Se ha agregado el curso a la lista de cursos' }
+      else
+        format.html { render :new }
+        format.json { render json: @course.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
+
   # GET /courses
   # GET /courses.json
   def index
@@ -14,6 +31,7 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
+    @course_already_taken = CourseUser.where(user_id: current_user, course_id: @course).exists?
   end
 
   # GET /courses/new

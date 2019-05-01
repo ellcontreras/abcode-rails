@@ -16,6 +16,14 @@
     <%= link_to topic.name, course_topic_path(@course, topic) %><br>
   <% end %>
 
+  <% if user_signed_in? && !@course_already_taken %>
+    <%= link_to 'Tomar este curso', course_to_user_path(@course), method: :post, class: "uk-button uk-button-primary uk-margin" %>
+  <% elsif @course_already_taken%>
+    <%= link_to 'Ir a este curso', play_course_path(@course), class: "uk-button uk-button-primary uk-margin" %>
+  <% else %>
+    <%= link_to 'Inicia sesión para tomar este curso', new_user_session_path, class: "uk-button uk-button-default uk-margin" %>
+  <% end %>
+
   <hr class="uk-divider-small">
   <%= link_to 'Agregar un tema', new_course_topic_path(@course) %>
   <%= link_to 'Editar', edit_course_path(@course) %>

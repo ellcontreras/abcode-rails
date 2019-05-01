@@ -1,6 +1,12 @@
 <div uk-grid>
     <div class="uk-width-3-4">
         <h2 class="uk-text-center">Curso de <%= @course.name %></h2>
+        <div class="uk-container">
+            <h3><%= @actual_topic.name %></h3>
+            <div class="fr-view">
+                <%= @actual_topic.description.html_safe %>
+            </div>
+        </div>
     </div>
     <div class="uk-width-1-4 uk-background-primary uk-padding-small">
         <h2 class="uk-text-center text-white">Temario</h2>
