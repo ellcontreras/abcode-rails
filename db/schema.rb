@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_30_195354) do
+ActiveRecord::Schema.define(version: 2019_05_01_235036) do
+
+  create_table "course_progresses", force: :cascade do |t|
+    t.integer "course_user_id"
+    t.integer "topic_id"
+    t.integer "lesson_id"
+    t.boolean "course_ended"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_user_id"], name: "index_course_progresses_on_course_user_id"
+    t.index ["lesson_id"], name: "index_course_progresses_on_lesson_id"
+    t.index ["topic_id"], name: "index_course_progresses_on_topic_id"
+  end
 
   create_table "course_users", force: :cascade do |t|
     t.integer "user_id"

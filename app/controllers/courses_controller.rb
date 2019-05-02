@@ -9,6 +9,20 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course_user.save
+        @course_progress = CourseProgress.new
+
+        @course_progress.course_user_id = @course_user.id
+        @course_progress.topic_id = Topic.where(course_id: params[:id]).last.id
+        @course_progress.lesson_id = Lesson.where(topic_id: @course_progress.topic_id.to_i).last.id
+        @course_progress.course_ended = false
+
+        @course_progress.save
+
+        puts "Errores", @course_progress.topic_id
+        @course_progress.errors.full_messages.each do |msg|
+          puts msg
+        end 
+
         format.html { redirect_to course_path(params[:id]), notice: 'Se ha agregado el curso a la lista de cursos' }
       else
         format.html { render :new }

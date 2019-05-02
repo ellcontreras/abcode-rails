@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_user: one
+  topic: one
+  lesson: one
+  course_ended: false
+
+two:
+  course_user: two
+  topic: two
+  lesson: two
+  course_ended: false
