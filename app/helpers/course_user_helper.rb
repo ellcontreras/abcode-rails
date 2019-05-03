@@ -1,0 +1,2 @@
+module CourseUserHelper
+end

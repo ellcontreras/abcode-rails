@@ -1,39 +1,59 @@
-<div uk-grid>
-    <div class="uk-width-3-4">
-        <h2 class="uk-text-center">Curso de <%= @course.name %></h2>
-        <div class="uk-container">
-            <h3><%= @actual_topic.name %></h3>
-            <div class="fr-view">
-                <%= @actual_topic.description.html_safe %>
+<% if !@course_progress.course_ended %>
+  <div class="uk-card uk-card-body uk-card-default">
+    <div uk-grid>
+        <div class="uk-width-3-4">
+            <h2 class="uk-text-center">Curso de <%= @course.name %></h2>
+            <div class="uk-container">
+                <h3><%= @actual_topic.name %></h3>
+                <div class="fr-view">
+                    <%= @actual_topic.description.html_safe %>
+                </div>
+
+                <hr>
+
+                <div>
+                    <%= @actual_lesson.name %>
+                    <div class="fr-view">
+                        <%= @actual_lesson.content   %>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="uk-width-1-4 uk-background-primary uk-padding-small">
+            <h2 class="uk-text-center text-white">Temario</h2>
+            <dl class="uk-description-list">
+                <% @topics.each do |topic| %>
+                    <div class="uk-padding-small">
+                        <% if (topic.id == @actual_topic.id) %>
+                            <div class="uk-background-muted uk-padding-small">
+                                <dt><%= topic.name %></dt>
+                                <dd class="uk-description-list">
+                                    <% topic.lessons.each do |lesson| %>
+                                        <dd><%= lesson.name %></dd>
+                                    <% end %>
+                                </dd>
+                            </div>
+                        <% else %>
+                            <div class="uk-padding-small text-white">
+                                <dt><%= topic.name %></dt>
+                                <dd class="uk-description-list">
+                                    <% topic.lessons.each do |lesson| %>
+                                        <dd><%= lesson.name %></dd>
+                                    <% end %>
+                                </dd>
+                            </div>
+                        <% end %>
+                    </div>
+                <% end %>
+            </dl>
+        </div>
     </div>
-    <div class="uk-width-1-4 uk-background-primary uk-padding-small">
-        <h2 class="uk-text-center text-white">Temario</h2>
-        <dl class="uk-description-list">
-            <% @topics.each do |topic| %>
-                <div class="uk-padding-small">
-                    <% if (topic.id == @actual_topic.id) %>
-                        <div class="uk-background-muted uk-padding-small">
-                            <dt><%= topic.name %></dt>
-                            <dd class="uk-description-list">
-                                <% topic.lessons.each do |lesson| %>
-                                    <dd><%= lesson.name %></dd>
-                                <% end %>
-                            </dd>
-                        </div>
-                    <% else %>
-                        <div class="uk-padding-small text-white">
-                            <dt><%= topic.name %></dt>
-                            <dd class="uk-description-list">
-                                <% topic.lessons.each do |lesson| %>
-                                    <dd><%= lesson.name %></dd>
-                                <% end %>
-                            </dd>
-                        </div>
-                    <% end %>
-                </div>
-            <% end %>
-        </dl>
-    </div>
+    <%= link_to 'Siguiente', next_step_path(@course), method: :post, class: "uk-button uk-button-primary uk-margin" %>
 </div>
+<% else %>
+  <div class="uk-card uk-card-body uk-card-default uk-text-center">
+    <%= image_tag 'checked.svg',class: "image-progress" %>
+    <h1>Tu ya has finalizado este curso!</h1>
+    <%= link_to 'Visita nuestros otros cursos', courses_path %>
+  </div>
+<% end %>
