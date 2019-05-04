@@ -20,7 +20,7 @@
               <% end %>
               <li><%= link_to 'Cursos', courses_path %></li>
               <li class="uk-active">
-                <a href="/"><b>ABCode</b></a>
+                <a href="/" class="logo-font uk-text-lead"><span>ABC</span><span class="uk-text-warning">ODE</span></a>
               </li>
               <% if user_signed_in? %>
                 <li><%= link_to 'Dashboard', dashboard_path %></li>
@@ -31,5 +31,27 @@
       </div>
   </nav>
     <%= yield %>
+    <footer class="uk-section">
+      <div class="uk-container">
+        <div uk-grid>
+          <div class="uk-width-1-2">
+            <ul class="uk-list">
+              <li><%= link_to 'Home', root_path, class: "text-black uk-text-bold" %></li>
+              <li><%= link_to 'Cursos', courses_path, class: "text-black" %></li>
+            </ul>
+          </div>
+          <div class="uk-width-1-2">
+            <h1 class="uk-margin-remove-bottom logo-font">
+              <span class="uk-text-primary">ABC</span><span class="uk-text-warning">ODE</span>
+            </h1>
+            <h2 class="uk-margin-remove-top uk-text-meta">LMS para programadores.</h2>
+            <button class="uk-button uk-button-primary">Contacto</button>
+          </div>
+        </div>
+      </div>
+      <p class="uk-text-center">
+        ABCODE by <a href="https://github.com/Obsinqsob01">Luis Contreras Guerra </a>
+        &copy 2019. All rights reserved. <a href="https://github.com/Obsinqsob01/abcode-rails">Source code at GitHub</a></p>
+    </footer>
   </body>
 </html>

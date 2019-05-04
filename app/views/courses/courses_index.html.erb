@@ -1,11 +1,38 @@
 <% if !notice.nil? %>   <div class="uk-alert-success" uk-alert>     <a class="uk-alert-close" uk-close></a>     <p><%= notice %></p>   </div> <% end %>
 
-<h1 class="uk-text-center">Courses</h1>
+<div class="uk-card uk-card-body uk-card-primary">
+    <h1 class="uk-text-center">Bienvenido a <span class="logo-font uk-text-primary">ABC</span><span class="logo-font uk-text-warning">ODE</span></h1>
 
-<div class="uk-text-center uk-child-width-expand" uk-grid>
-    <% @courses.each do |course| %>
-        <div class="uk-card uk-card-default uk-card-body">
-            <h2><%= link_to course.name, course %></h2>
+    <h2 class="uk-text-center">Cursos más nuevos</h2>
+
+    <div class="uk-container uk-container-large">
+        <div class="uk-text-center uk-child-width-expand" uk-grid>
+            <% @courses.each do |course| %>
+                <div class="uk-card uk-card-default uk-card-body">
+                    <h2><%= link_to course.name, course, class: "text-black" %></h2>
+                    <%= link_to 'Tomar este curso', course_to_user_path(course), method: :post, class: "uk-button uk-button-primary" %>
+                </div>
+            <% end %>
         </div>
-    <% end %>
+    </div>
+</div>
+
+<div class="uk-section uk-section-default">
+    <h2 class="uk-text-center">Aprende a tu ritmo</h2>
+    <div class="uk-flex uk-flex-center">
+            <%= image_tag 'courses_index.svg', width: "300", height: "300", class: "uk-margin" %>
+            <div class="uk-padding">
+                <h3>No importa si eres principiante o ya tienes nociones sobre la computación</h3>
+                <ul>
+                    <li><h4>Sigue tu progreso</h4></li>
+                    <li><h4>Resuelve tus dudas en el foro</h4></li>
+                    <li><h4>Aprende con contenidos sencillos</h4></li>
+                </ul>
+            </div>
+    </div>
+</div>
+
+<div class="uk-section uk-section-muted uk-text-center">
+    <h1>Se parte de nuestra comunidad de estudiantes!</h1>
+    <%= link_to 'Empezar a aprender ahora', courses_path, class: "uk-button uk-button-primary" %>
 </div>

@@ -8,7 +8,7 @@ class CoursesController < ApplicationController
   end
 
   def courses_index
-    @courses = Course.all
+    @courses = Course.limit(3)
   end
 
   # GET /courses/1

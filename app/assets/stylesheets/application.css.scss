@@ -37,10 +37,31 @@
 @import "third_party/image_tui.min.css";
 @import "third_party/spell_checker.min.css";
 
+@import url("https://fonts.googleapis.com/css?family=Cabin+Sketch");
+
 .navbar-background {
   background-color: #208ef1 !important;
 }
 
 .navbar-background a {
   color: #f0f8fe !important;
+}
+
+.text-black,
+a.text-black {
+  color: #444 !important;
+}
+
+.text-black:hover,
+a.text-black:hover {
+  color: #222 !important;
+  text-decoration: none;
+}
+
+footer {
+  background-color: #eaedf1;
+}
+
+.logo-font {
+  font-family: "Cabin Sketch", cursive;
 }
