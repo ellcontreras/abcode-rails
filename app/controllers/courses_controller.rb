@@ -8,7 +8,7 @@ class CoursesController < ApplicationController
   end
 
   def courses_index
-    @courses = Course.limit(3)
+    @courses = Course.limit(3).reverse_order
   end
 
   # GET /courses/1
