@@ -5,6 +5,11 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     @courses = Course.all
+
+    @fundamentos_category = @courses.select do |course|
+      course.category == "fundamentos de programación"
+    end
+
   end
 
   def courses_index

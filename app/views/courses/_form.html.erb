@@ -24,7 +24,9 @@
 
   <div class="uk-margin">
     <%= form.label "Selecciona una categoria:" %>
-    <%= select_tag(:category, options_for_select([["Fundamentos de programación", "fundamentos"], ["Desarrollo web", "web"]]), class: "uk-select")%>
+    <%= form.select(:category, 
+      options_for_select(["Fundamentos de programación", "Desarrollo web", "Desarrollo apps"], 1),
+      {include_blank: "Escoje una categoría"}, { class: "uk-select"}) %>
   </div>
 
   <div class="actions">

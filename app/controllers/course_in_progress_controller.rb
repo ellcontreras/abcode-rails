@@ -13,7 +13,9 @@ class CourseInProgressController < ApplicationController
                 topic.lessons.each_with_index do |lesson, key|
                     if lesson.id == @actual_lesson.id
                         if topic.lessons[key + 1]
-                            @actual_lesson = topic.lessons[key + 1]
+                            @course_progress.lesson_id = topic.lessons[key + 1].id
+                            @course_progress.save
+                            
                             already_changed = true
                         else
                             if @topics[index + 1]
@@ -38,7 +40,6 @@ class CourseInProgressController < ApplicationController
                 end
             end
         end
-
     end
 
     private
