@@ -1,0 +1,17 @@
+<div class="uk-container uk-margin">
+    <h1><%= @user.name %></h1>
+    <h3>Email: <%= @user.email %></h3>
+
+    <hr>
+
+    <div>
+        <h2>Cursos del usuario</h2>
+        <% if @courses.length > 0 %>
+          <%= @courses.each do |course| %>
+            course.name
+          <% end %>
+        <% else %>
+          <h4>Este usuario no tiene cursos aún</h4>
+        <% end %>
+    </div>
+</div>

@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   post "/course/add/user/:id" => "course_user#add_course_to_user", :as => :course_to_user
 
+  get "/profile/:id" => "user_profile#index", :as => :user_profile
+
   root "courses#courses_index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
