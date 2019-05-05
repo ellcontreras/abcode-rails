@@ -4,12 +4,7 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
-
-    @fundamentos_category = @courses.select do |course|
-      course.category == "fundamentos de programación"
-    end
-
+    @courses = Course.all.reverse
   end
 
   def courses_index

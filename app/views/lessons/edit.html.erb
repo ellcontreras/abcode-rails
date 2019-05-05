@@ -1,4 +1,4 @@
-<div class="uk-container">
+<div class="uk-container uk-margin">
   <h1>Editando Lección</h1>
 
   <%= form_with(model: @lesson, local: true, url: course_topic_lesson_path(params[:course_id], params[:topic_id])) do |form| %>
@@ -21,12 +21,15 @@
 
     <div class="uk-margin">
       <%= form.label :content %>
-      <%= form.text_area :content, class: "uk-textarea" %>
+      <%= form.text_area :content, class: "uk-textarea", id: "freditor" %>
     </div>
 
     <div class="uk-margin">
       <%= form.label :is_quiz %>
-      <%= select_tag(:is_quiz, options_for_select([["si", true], ["No", false]]), class: "uk-select", default: false)%>  
+      <%= select_tag(:is_quiz, options_for_select([["si", true], ["No", false]]), class: "uk-select", default: false)%>
+      <%= form.select(:is_quiz, 
+      options_for_select([["si", true], ["No", false]], 1),
+      {include_blank: "Escoje una categoría"}, { class: "uk-select"}) %>
     </div>
 
     <div id="is-quiz">
@@ -73,6 +76,14 @@
       isQuiz.style.display = "none";
     }
   })
+
+  $("#freditor").froalaEditor({
+    imageUploadURL: '/upload_image',
+
+    imageUploadParams: {
+      id: 'my_editor'
+    }
+  });
 
   </script>
 

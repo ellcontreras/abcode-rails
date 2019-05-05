@@ -1,5 +1,5 @@
 <% if !@course_progress.course_ended %>
-  <div class="uk-card uk-card-body uk-card-default">
+  <div class="uk-card uk-card-body uk-card-default uk-margin">
     <div uk-grid>
         <div class="uk-width-3-4">
             <h2 class="uk-text-center">Curso de <%= @course.name %></h2>
@@ -12,9 +12,9 @@
                 <hr>
 
                 <div>
-                    <%= @actual_lesson.name %>
+                    <h3><%= @actual_lesson.name %></h3>
                     <div class="fr-view">
-                        <%= @actual_lesson.content   %>
+                        <%= @actual_lesson.content.html_safe %>
                     </div>
                 </div>
             </div>
@@ -48,10 +48,10 @@
             </dl>
         </div>
     </div>
-    <%= link_to 'Siguiente', next_step_path(@course), method: :post, class: "uk-button uk-button-primary uk-margin" %>
+    <%= link_to 'Siguiente', next_step_path(@course), method: :post, class: "uk-button uk-button-primary uk-margin", remote: false %>
 </div>
 <% else %>
-  <div class="uk-card uk-card-body uk-card-default uk-text-center">
+  <div class="uk-card uk-card-body uk-card-default uk-text-center uk-margin">
     <%= image_tag 'checked.svg',class: "image-progress" %>
     <h1>Tu ya has finalizado este curso!</h1>
     <%= link_to 'Visita nuestros otros cursos', courses_path %>

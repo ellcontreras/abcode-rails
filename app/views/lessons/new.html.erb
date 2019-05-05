@@ -1,4 +1,4 @@
-<div class="uk-container">
+<div class="uk-container uk-margin">
   <h1>Nueva lección</h1>
 
   <%= form_with(model: @lesson, local: true, url: course_topic_lessons_path(params[:course_id], params[:topic_id])) do |form| %>
@@ -25,12 +25,12 @@
 
     <div class="uk-margin">
       <%= form.label :content %>
-      <%= form.text_area :content, class: "uk-textarea" %>
+      <%= form.text_area :content, class: "uk-textarea", id: "freditor" %>
     </div>
 
     <div class="uk-margin">
-      <%= form.label :is_quiz %>
-      <%= select_tag(:is_quiz, options_for_select([["si", true], ["No", false]]), class: "uk-select", default: false)%>  
+      <%= form.label :es_quiz %>
+      <%= form.select(:is_quiz, options_for_select([["Si", true], ["No", false]], 2), {}, { class: "uk-select"}) %>  
     </div>
 
     <div id="is-quiz">
@@ -52,7 +52,8 @@
       </div>
       <div class="uk-margin">
         <%= form.label "Cual es la respuesta correcta" %>
-        <%= select_tag(:quiz_which_correct, options_for_select([["Respuesta 1", 1], ["Respuesta 2", 2], ["Respuesta 3", 3]]), class: "uk-select")%>
+        <%= form.select(:quiz_which_correct,
+          options_for_select([["Respuesta 1", 1], ["Respuesta 2", 2], ["Respuesta 3", 3]]), {}, { class: "uk-select" })%>
       </div>
     </div>
 
@@ -63,7 +64,7 @@
 
   <script>
   var isQuiz = document.getElementById("is-quiz");
-  var isQuizSelect = document.getElementById("is_quiz");
+  var isQuizSelect = document.getElementById("lesson_is_quiz");
 
   var isSelected = isQuizSelect.value;
   isQuiz.style.display = "none";
@@ -77,6 +78,14 @@
       isQuiz.style.display = "none";
     }
   })
+
+  $("#freditor").froalaEditor({
+    imageUploadURL: '/upload_image',
+
+    imageUploadParams: {
+      id: 'my_editor'
+    }
+  });
 
   </script>
 

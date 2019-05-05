@@ -40,6 +40,8 @@ class CourseInProgressController < ApplicationController
                 end
             end
         end
+
+        redirect_to play_course_path, :params => params
     end
 
     private
