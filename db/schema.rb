@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_01_235036) do
+ActiveRecord::Schema.define(version: 2019_05_05_231251) do
 
   create_table "course_progresses", force: :cascade do |t|
     t.integer "course_user_id"
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 2019_05_01_235036) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
-    t.string "role"
+    t.string "role", default: "student"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
