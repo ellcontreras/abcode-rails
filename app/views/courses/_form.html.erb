@@ -19,7 +19,7 @@
 
   <div class="uk-margin">
     <%= form.label :description %>
-    <%= form.text_area :description, class: "uk-textarea" %>
+    <%= form.text_area :description, class: "uk-textarea", id: "freditor" %>
   </div>
 
   <div class="uk-margin">
@@ -33,3 +33,13 @@
     <%= form.submit "Crear curso", class: "uk-button uk-button-primary"%>
   </div>
 <% end %>
+
+<script>
+    $("#freditor").froalaEditor({
+      imageUploadURL: '/upload_image',
+
+      imageUploadParams: {
+        id: 'my_editor'
+      }
+    });
+</script>

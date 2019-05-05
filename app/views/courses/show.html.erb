@@ -3,11 +3,11 @@
 
   <h2 class="uk-text-center">Curso de <%= @course.name %></h2>
   
-  <%= @course.description.capitalize %>
+  <%= @course.description.capitalize.html_safe %>
 
   <p>
     <strong>Category:</strong>
-    <%= @course.category %>
+    <%= @course.category.capitalize %>
   </p>
 
   <hr>
