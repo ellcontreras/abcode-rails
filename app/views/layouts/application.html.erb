@@ -23,8 +23,11 @@
                 <a href="/" class="logo-font uk-text-lead"><span>ABC</span><span class="uk-text-warning">ODE</span></a>
               </li>
               <% if user_signed_in? %>
-                <li><%= link_to 'Dashboard', dashboard_path %></li>
+                <% if current_user.role == "admin" %>
+                  <li><%= link_to 'Dashboard', dashboard_path %></li>
+                <% end %>
                 <li><%= link_to 'Mis cursos', courses_path %></li>
+                <li><%= link_to "Bienvenido #{current_user.name}", courses_path %></li>
               <% else %>
                 <li><%= link_to "Registro", new_user_registration_path %></li>
               <% end %>
