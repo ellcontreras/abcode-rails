@@ -29,7 +29,13 @@
                                 <dt><%= topic.name %></dt>
                                 <dd class="uk-description-list">
                                     <% topic.lessons.each do |lesson| %>
-                                        <dd><%= lesson.name %></dd>
+                                        <% if lesson.id == @actual_lesson.id %>
+                                            <dd>
+                                                <span class="uk-label uk-label-secondary"><%= lesson.name %></span>
+                                            </dd>
+                                        <% else %>
+                                            <dd><%= lesson.name %></dd>
+                                        <% end %>
                                     <% end %>
                                 </dd>
                             </div>
