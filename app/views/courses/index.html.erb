@@ -16,7 +16,7 @@
   <div class="uk-flex uk-flex-center uk-flex-wrap">
     <% @courses.each do |course| %>
         <div class="uk-card uk-card-default uk-card-body uk-width-1-3 uk-margin">
-          <h2><%= course.name %></h2>
+          <%= link_to course.name, course_path(course), class: "uk-heading-small" %>
           <p class="uk-text-bold">Categoria: <%= course.category.capitalize %></p>
           <p><span class="uk-text-bold">Estudiantes: </span><%= CourseUser.count(:course_id) %></p>
           <% if is_admin(current_user) %>

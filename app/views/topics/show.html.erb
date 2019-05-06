@@ -18,10 +18,11 @@
 
   <hr>
 
-  <%= link_to 'Agregar una lección', new_course_topic_lesson_path(@topic.course_id, @topic) %>
-  <%= link_to 'Edit', edit_course_topic_path(@topic) %>
-  <%= link_to 'Delete', course_topic_path(@topic), method: :delete %>
-  <%= link_to 'Back', course_topics_path %>
+  <% if is_admin(current_user) %>
+    <%= link_to 'Agregar una lección', new_course_topic_lesson_path(@topic.course_id, @topic) %>
+    <%= link_to 'Edit', edit_course_topic_path(@topic) %>
+    <%= link_to 'Delete', course_topic_path(@topic), method: :delete %>
+  <% end %>
 
 </div>
 

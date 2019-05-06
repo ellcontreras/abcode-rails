@@ -9,15 +9,11 @@
   <h1 class="uk-text-center"><%= @lesson.name %></h1>
 
   <p>
-    <strong>Content:</strong>
-    <%= @lesson.content %>
+    <%= @lesson.content.html_safe %>
   </p>
 
-  <p>
-    <strong>Is quiz:</strong>
-    <%= @lesson.is_quiz %>
-  </p>
 </div>
 
-<%= link_to 'Edit', edit_course_topic_lesson_path(@lesson) %> |
-<%= link_to 'Back', course_topic_lessons_path %>
+<% if is_admin(current_user) %>
+  <%= link_to 'Edit', edit_course_topic_lesson_path(@lesson) %> |
+<% end %>
