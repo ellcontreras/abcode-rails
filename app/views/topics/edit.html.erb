@@ -3,6 +3,8 @@
 
     <%= render 'form', topic: @topic %>
 
-    <%= link_to 'Show', @topic %> |
-    <%= link_to 'Back', topics_path %>
+    <% if is_admin(current_user) %>
+        <%= link_to 'Show', course_topic_path(@topic) %> |
+        <%= link_to 'Back', course_topics_path %>
+    <% end %>
 </div>

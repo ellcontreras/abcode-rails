@@ -6,9 +6,11 @@
 
     <div>
         <h2>Cursos del usuario</h2>
-        <% if @courses.length > 0 %>
-          <%= @courses.each do |course| %>
-            course.name
+        <% if @courses_user.length > 0 %>
+          <% @courses_user.each do |course_user| %>
+            <ul class="uk-list uk-list-bullet">
+              <li><h4><%= course_user.course.name %></h4></li>
+            </ul>
           <% end %>
         <% else %>
           <h4>Este usuario no tiene cursos aún</h4>
