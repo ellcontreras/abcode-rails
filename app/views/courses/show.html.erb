@@ -10,6 +10,11 @@
     <%= @course.category.capitalize %>
   </p>
 
+  <p>
+    <strong>Cantidad de estudiantes:</strong>
+    <%= CourseUser.count(:course_id) %>
+  </p>
+
   <hr>
   <h2>Temas del curso</h2>
   <% @course.topics.each do |topic| %>
