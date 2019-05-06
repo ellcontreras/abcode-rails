@@ -1,5 +1,10 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:mine]
+
+  def mine
+    @courses_user = CourseUser.joins(:course, :course_progress).where(user_id: current_user.id)
+  end
 
   # GET /courses
   # GET /courses.json

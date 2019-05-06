@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get "/download_file/:name" => "upload#access_file", :as => :upload_access_file, :name => /.*/
 
   post "/course/add/user/:id" => "course_user#add_course_to_user", :as => :course_to_user
+  get "/course/mine" => "courses#mine", :as => :courses_mine
 
   get "/profile/:id" => "user_profile#index", :as => :user_profile
 
