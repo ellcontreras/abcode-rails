@@ -1,10 +1,11 @@
 <div class="uk-container uk-margin">
     <h1 class="uk-text-center">Mis cursos</h1>
 
-    <ul class="uk-list uk-list-divider">
+    <ul class="uk-list">
         <% @courses_user.each do |course_user| %>
-            <li>
-                <h2><%= course_user.course.name %> <%= percentage(course_user.course.id)%>%</h2>
+            <li class="uk-card uk-card-default uk-card-body uk-margin">
+                <%= link_to "#{course_user.course.name} #{percentage(course_user.course.id)}%",
+                    play_course_path(course_user.course.id), class: "uk-heading-small" %>
                 <progress class="uk-progress" value="<%= percentage(course_user.course.id) %>" max="100"></progress>
             </li>
         <% end %>
