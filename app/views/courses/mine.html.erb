@@ -1,6 +1,8 @@
 <div class="uk-container uk-margin">
     <h1 class="uk-text-center">Mis cursos</h1>
 
+    <%= request %>
+
     <ul class="uk-list">
         <% @courses_user.each do |course_user| %>
             <li class="uk-card uk-card-default uk-card-body uk-margin">
@@ -8,6 +10,10 @@
                     play_course_path(course_user.course.id), class: "uk-heading-small" %>
                 <progress class="uk-progress" value="<%= percentage(course_user.course.id) %>" max="100"></progress>
             </li>
+        <% end %>
+
+        <% if @courses_user.length == 0 %>
+          <h3 class="uk-text-center">Aún no te has registrado en ningún curso</h3>
         <% end %>
     </ul>
 </div>

@@ -5,15 +5,16 @@
   </div>
 <% end %>
 
-<div class="uk-container">
+<div class="uk-container uk-margin">
   <h1 class="uk-text-center"><%= @lesson.name %></h1>
 
   <p>
     <%= @lesson.content.html_safe %>
   </p>
 
+  <% if is_admin(current_user) %>
+    <%= link_to 'Editar', edit_course_topic_lesson_path(@lesson) %>
+    <%= link_to 'Eliminar', course_topic_lesson_path(@lesson),
+      method: :delete, data: {confirm: "De verdad quieres eliminar la lección?"} %>
+  <% end %>
 </div>
-
-<% if is_admin(current_user) %>
-  <%= link_to 'Edit', edit_course_topic_lesson_path(@lesson) %> |
-<% end %>

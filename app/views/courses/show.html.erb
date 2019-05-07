@@ -34,6 +34,7 @@
   <% if is_admin(current_user) %>
     <%= link_to 'Agregar un tema', new_course_topic_path(@course) %>
     <%= link_to 'Editar', edit_course_path(@course) %>
+    <%= link_to 'Eliminar', course_path(@course), method: :delete, data: {confirm: "De verdad quieres eliminar este curso?"} %>
   <% end %>
 
 </div>

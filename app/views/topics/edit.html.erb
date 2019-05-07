@@ -1,10 +1,47 @@
 <div class="uk-container uk-margin">
     <h1>Editar Tema</h1>
 
-    <%= render 'form', topic: @topic %>
+    <%= form_with(model: @topic, local: true, url: course_topic_url) do |form| %>
+        <% if @topic.errors.any? %>
+            <div id="error_explanation">
+            <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+
+            <ul>
+            <% @topic.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+            </ul>
+            </div>
+        <% end %>
+
+        <div class="uk-margin">
+            <%= form.label :nombre %>
+            <%= form.text_field :name, class: "uk-input" %>
+        </div>
+
+        <div class="uk-margin">
+            <%= form.label :descripción %>
+            <%= form.text_area :description, class: "uk-textarea", id: "freditor" %>
+        </div>
+
+        <div class="actions">
+            <%= form.submit "Guardar topic", class: "uk-button uk-button-primary" %>
+        </div>
+        <% end %>
+
+        <script>
+            $("#freditor").froalaEditor({
+            imageUploadURL: '/upload_image',
+
+            imageUploadParams: {
+                id: 'my_editor'
+            }
+            });
+        </script>
+
+
 
     <% if is_admin(current_user) %>
-        <%= link_to 'Show', course_topic_path(@topic) %> |
-        <%= link_to 'Back', course_topics_path %>
+        <%= link_to 'Mostrar', course_topic_path(@topic) %> |
     <% end %>
 </div>

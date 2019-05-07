@@ -20,14 +20,14 @@
           <p class="uk-text-bold">Categoria: <%= course.category.capitalize %></p>
           <p><span class="uk-text-bold">Estudiantes: </span><%= CourseUser.count(:course_id) %></p>
           <% if is_admin(current_user) %>
-            <%= link_to 'Show', course %>
-            <%= link_to 'Edit', edit_course_path(course) %>
-            <%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Mostrar', course %>
+            <%= link_to 'Editar', edit_course_path(course) %>
+            <%= link_to 'Eliminar', course, method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
         </div>
     <% end %>
   </div>
   <% if is_admin(current_user) %>
-    <%= link_to 'New Course', new_course_path %>
+    <%= link_to 'Nuevo curso', new_course_path %>
   <% end %>
 </div>

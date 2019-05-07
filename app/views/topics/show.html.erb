@@ -3,7 +3,7 @@
 <span class="uk-label">Curso de <%= @topic.course.name %></span>
 
 
-<div class="uk-container">
+<div class="uk-container uk-margin">
   <h1 class="uk-text-center"><%= @topic.name %></h1>
 
     <strong>Description:</strong>
@@ -20,8 +20,8 @@
 
   <% if is_admin(current_user) %>
     <%= link_to 'Agregar una lección', new_course_topic_lesson_path(@topic.course_id, @topic) %>
-    <%= link_to 'Edit', edit_course_topic_path(@topic) %>
-    <%= link_to 'Delete', course_topic_path(@topic), method: :delete %>
+    <%= link_to 'Editar', edit_course_topic_path(@topic) %>
+    <%= link_to 'Eliminar', course_topic_path(@topic), method: :delete %>
   <% end %>
 
 </div>

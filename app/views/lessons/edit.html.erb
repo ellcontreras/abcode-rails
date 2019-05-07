@@ -25,11 +25,8 @@
     </div>
 
     <div class="uk-margin">
-      <%= form.label :is_quiz %>
-      <%= select_tag(:is_quiz, options_for_select([["si", true], ["No", false]]), class: "uk-select", default: false)%>
-      <%= form.select(:is_quiz, 
-      options_for_select([["si", true], ["No", false]], 1),
-      {include_blank: "Escoje una categoría"}, { class: "uk-select"}) %>
+      <%= form.label :es_quiz %>
+      <%= select_tag(:is_quiz, options_for_select([["si", true], ["No", false]], 2), class: "uk-select")%>
     </div>
 
     <div id="is-quiz">
@@ -88,7 +85,5 @@
   </script>
 
 
-  <%= link_to 'Show', course_topic_lesson_path(@lesson) %> |
-  <%= link_to 'Back', course_topic_lessons_path %>
-
+  <%= link_to 'Mostrar', course_topic_lesson_path(@lesson) %>
 </div>
