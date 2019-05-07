@@ -6,7 +6,7 @@
   <%= @course.description.capitalize.html_safe %>
 
   <p>
-    <strong>Category:</strong>
+    <strong>Categoría:</strong>
     <%= @course.category.capitalize %>
   </p>
 
@@ -17,9 +17,11 @@
 
   <hr>
   <h2>Temas del curso</h2>
-  <% @course.topics.each do |topic| %>
-    <%= link_to topic.name, course_topic_path(@course, topic) %><br>
-  <% end %>
+  <ul class="uk-list uk-list-bullet">
+    <% @course.topics.each do |topic| %>
+      <li><p><%= topic.name %></p></li>
+    <% end %>
+  </ul>
 
   <% if user_signed_in? && !@course_already_taken %>
     <%= link_to 'Tomar este curso', course_to_user_path(@course), method: :post, class: "uk-button uk-button-primary uk-margin" %>
