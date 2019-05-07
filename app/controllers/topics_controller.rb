@@ -36,7 +36,7 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       if @topic.save
-        format.html { redirect_to course_topics_path(@topic), notice: 'El topic se creó de forma correcta' }
+        format.html { redirect_to course_topic_path(@topic.course_id, @topic), notice: 'El topic se creó de forma correcta' }
         format.json { render :show, status: :created, location: @topic }
       else
         format.html { render :new }

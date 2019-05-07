@@ -1,10 +1,3 @@
-<% if !notice.nil? %>
-  <div class="uk-alert-success" uk-alert>
-    <a class="uk-alert-close" uk-close></a>
-    <p><%= notice %></p>
-  </div>
-<% end %>
-
 <div class="uk-background-cover uk-background-blend-soft-light uk-background-primary uk-flex uk-flex-center uk-height-medium uk-width-expand" style="background-image: url('http://localhost:3000/assets/background-courses-14c8b1f25009b35d9114ef5af36f64a513a9228ca170520827f7c88411a31028.png')">
   <div class="uk-container uk-margin uk-padding uk-text-center">
     <h1 class="uk-text-bold text-white uk-margin-remove-bottom uk-margin-top">Aprende con nuestros cursos</h1>
@@ -18,7 +11,7 @@
         <div class="uk-card uk-card-default uk-card-body uk-width-1-3 uk-margin">
           <%= link_to course.name, course_path(course), class: "uk-heading-small" %>
           <p class="uk-text-bold">Categoria: <%= course.category.capitalize %></p>
-          <p><span class="uk-text-bold">Estudiantes: </span><%= CourseUser.count(:course_id) %></p>
+          <p><span class="uk-text-bold">Estudiantes: </span><%= CourseUser.where(course_id: course.id).count %></p>
           <% if is_admin(current_user) %>
             <%= link_to 'Mostrar', course %>
             <%= link_to 'Editar', edit_course_path(course) %>

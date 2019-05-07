@@ -14,6 +14,13 @@ class CoursesController < ApplicationController
 
   def courses_index
     @courses = Course.limit(3).reverse_order
+
+    if user_signed_in?
+      render "home_user_loged"
+    else
+      render "home"
+    end
+
   end
 
   # GET /courses/1

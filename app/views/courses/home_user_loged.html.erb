@@ -1,0 +1,14 @@
+<div class="uk-container uk-margin">
+    <h1 class="uk-text-center">Hola, Qué vas a aprender hoy?</h1>
+
+    <p>Nuestros ultimos cursos:</p>
+    <div uk-slider>
+        <ul class="uk-slider-items uk-child-width-1-3@s uk-child-width-1-4@">
+            <% @courses.each do |course| %>
+                <li class="uk-card uk-card-default uk-card-body">
+                    <%= link_to course.name, course_path(course), class: "uk-text-center uk-text-large" %>
+                </li>
+            <% end %>
+        </ul>
+    </div>
+</div>
