@@ -36,7 +36,7 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       if @topic.save
-        format.html { redirect_to course_topics_path(@topic), notice: 'Topic was successfully created.' }
+        format.html { redirect_to course_topics_path(@topic), notice: 'El topic se creó de forma correcta' }
         format.json { render :show, status: :created, location: @topic }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class TopicsController < ApplicationController
   def update
     respond_to do |format|
       if @topic.update(topic_params)
-        format.html { redirect_to course_topic_path(@topic), notice: 'Topic was successfully updated.' }
+        format.html { redirect_to course_topic_path(@topic), notice: 'El topic se actualizó de forma correcta' }
         format.json { render :show, status: :ok, location: @topic }
       else
         format.html { render :edit }
@@ -64,7 +64,7 @@ class TopicsController < ApplicationController
   def destroy
     @topic.destroy
     respond_to do |format|
-      format.html { redirect_to course_topics_url, notice: 'Topic was successfully destroyed.' }
+      format.html { redirect_to course_topics_url, notice: 'El topic se eliminó de forma correcta' }
       format.json { head :no_content }
     end
   end
