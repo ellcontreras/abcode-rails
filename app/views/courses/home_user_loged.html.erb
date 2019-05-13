@@ -1,14 +1,26 @@
-<div class="uk-container uk-margin">
-    <h1 class="uk-text-center">Hola, Qué vas a aprender hoy?</h1>
+<div class="uk-container uk-margin uk-height-large-max">
+  <h1 class="uk-text-center">Hola, Qué vas a aprender hoy?</h1>
 
-    <p>Nuestros ultimos cursos:</p>
+  <div class="border uk-padding">
+    <h4>Nuestros ultimos cursos:</h4>
     <div uk-slider>
-        <ul class="uk-slider-items uk-child-width-1-3@s uk-child-width-1-4@">
-            <% @courses.each do |course| %>
-                <li class="uk-card uk-card-default uk-card-body">
-                    <%= link_to course.name, course_path(course), class: "uk-text-center uk-text-large" %>
-                </li>
-            <% end %>
-        </ul>
+      <ul class="uk-slider-items uk-child-width-1-3@s uk-child-width-1-4@">
+        <% @courses.each do |course| %>
+          <li class="uk-card uk-card-default uk-card-body">
+            <%= link_to course.name, course_path(course), class: "uk-text-center
+            uk-text-large" %>
+          </li>
+        <% end %>
+      </ul>
     </div>
+  </div>
+
+  <div class="border uk-padding uk-text-center">
+    <h4>Visita nuestro foro</h4>
+    <p>lorem asdchjadcbjhasdcjhbasdcasdcjkhbasdcjhkasdckjhb</p>
+    <p>lorem asdchjadcbjhasdcjhbasdcasdcjkhbasdcjhkasdckjhb</p>
+    <p>lorem asdchjadcbjhasdcjhbasdcasdcjkhbasdcjhkasdckjhb</p>
+    <p>lorem asdchjadcbjhasdcjhbasdcasdcjkhbasdcjhkasdckjhb</p>
+    <p>lorem asdchjadcbjhasdcjhbasdcasdcjkhbasdcjhkasdckjhb</p>
+  </div>
 </div>
