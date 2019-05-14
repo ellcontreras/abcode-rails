@@ -73,3 +73,5 @@ gem "chartkick"
 gem 'wicked_pdf'
 
 gem 'wkhtmltopdf-binary'
+
+gem 'rails-timeago', '~> 2.0'

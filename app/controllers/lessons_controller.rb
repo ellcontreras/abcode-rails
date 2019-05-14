@@ -28,6 +28,20 @@ class LessonsController < ApplicationController
 
     @lesson.topic_id = params[:topic_id]
 
+    @lesson.save
+
+    # if params[:is_quiz]
+    #   @quiz = Quiz.new
+
+    #   @quiz.name = params[:quiz_name]
+    #   @quiz.content = params[:quiz_content]
+    #   @quiz.answer1 = params[:quiz_answer1]
+    #   @quiz.answer2 = params[:quiz_answer2]
+    #   @quiz.answer3 = params[:quiz_answer3]
+    #   @quiz.which_correct = params[:quiz_which_correct]
+
+    # end
+
     respond_to do |format|
       if @lesson.save
         format.html { redirect_to course_topic_lessons_path(@lesson), notice: 'La lección se creó correctamente' }
@@ -75,6 +89,6 @@ class LessonsController < ApplicationController
     end
 
     def quiz_params
-      params.require(:quiz).permit(:quiz_name, :quiz_content, :quiz_answer1, :quiz_answer2, :quiz_answer3)
+      params.require(:quiz).permit(:quiz_name, :quiz_content, :quiz_answer1, :quiz_answer2, :quiz_answer3, :quiz_which_correct)
     end
 end

@@ -1,19 +1,36 @@
 <div class="uk-container uk-margin">
-    <h1><%= @user.name %></h1>
+  <div class="uk-background-cover uk-background-primary uk-padding">
+    <h1 class="uk-text-center text-white">Perfil de <%= @user.name %></h1>  
+  </div>
+    <h4>Antiguedad: <%= timeago_tag @user.created_at, :nojs => true, :limit => 15.days.ago %></h4>
     <h3>Email: <%= @user.email %></h3>
 
     <hr>
 
-    <div>
-        <h2>Cursos del usuario</h2>
-        <% if @courses_user.length > 0 %>
-          <% @courses_user.each do |course_user| %>
-            <ul class="uk-list uk-list-bullet">
-              <li><h4><%= course_user.course.name %></h4></li>
-            </ul>
+    <div uk-grid>
+        <div class="uk-width-1-2">
+          <h2>Cursos:</h2>
+          <% if @courses_user.length > 0 %>
+            <% @courses_user.each do |course_user| %>
+              <ul class="uk-list uk-list-bullet">
+                <li><h4><%= course_user.course.name %></h4></li>
+              </ul>
+            <% end %>
+          <% else %>
+            <h4>Este usuario no tiene cursos aún</h4>
           <% end %>
-        <% else %>
-          <h4>Este usuario no tiene cursos aún</h4>
-        <% end %>
+        </div>
+        <div class="uk-width-1-2">
+          <h2>Cursos terminados:</h2>
+          <% if @courses_user.length > 0 %>
+            <% @courses_user.each do |course_user| %>
+              <ul class="uk-list uk-list-bullet">
+                <li><h4><%= course_user.course.name %></h4></li>
+              </ul>
+            <% end %>
+          <% else %>
+            <h4>Este usuario no tiene cursos terminados aún</h4>
+          <% end %>
+        </div>
     </div>
 </div>
