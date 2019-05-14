@@ -60,6 +60,7 @@
   <div class="uk-card uk-card-body uk-card-default uk-text-center uk-margin">
     <%= image_tag 'checked.svg',class: "image-progress" %>
     <h1>Tu ya has finalizado este curso!</h1>
+    <%= link_to 'Certificado de finalización', certificate_course_path, class: "uk-button uk-button-primary" %><br>
     <%= link_to 'Visita nuestros otros cursos', courses_path %>
   </div>
 <% end %>

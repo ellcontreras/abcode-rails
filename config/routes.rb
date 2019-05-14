@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/dashboard" => "dashboard#index"
 
   get "/course/play/:course_id" => "course_in_progress#index", :as => :play_course
+  get "/course/play/:course_id/certificate.pdf" => "course_in_progress#certificate", :as => :certificate_course
   post "/course/play/:course_id" => "course_in_progress#next", :as => :next_step
 
   post "/upload_image" => "upload#upload_image", :as => :upload_image

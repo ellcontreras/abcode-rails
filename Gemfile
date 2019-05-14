@@ -69,3 +69,7 @@ gem "jquery-rails"
 gem 'devise'
 
 gem "chartkick"
+
+gem 'wicked_pdf'
+
+gem 'wkhtmltopdf-binary'

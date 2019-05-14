@@ -44,6 +44,20 @@ class CourseInProgressController < ApplicationController
         redirect_to play_course_path, :params => params
     end
 
+    def certificate
+
+        @course = Course.find(params[:course_id])
+        @user = current_user
+
+        respond_to do |format|
+            format.html
+            format.pdf do
+                render pdf: "certificate",
+                        template: "course_in_progress/certificate.html.erb"   # Excluding ".pdf" extension.
+            end
+        end
+    end
+
     private
         def set_initial_params
             @topics = Topic.includes(:lessons, :course).references(:lessons)
