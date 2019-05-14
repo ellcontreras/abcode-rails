@@ -40,3 +40,5 @@
 //= require third_party/image_tui.min.js
 //= require third_party/spell_checker.min.js
 //= require_tree .
+//= require Chart.bundle
+//= require chartkick
