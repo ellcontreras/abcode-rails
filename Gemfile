@@ -67,3 +67,5 @@ gem "font-awesome-sass"
 gem "jquery-rails"
 
 gem 'devise'
+
+gem "chartkick"
