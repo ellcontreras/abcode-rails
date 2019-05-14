@@ -2,4 +2,21 @@
     <h1>Dashboard</h1>
 
     <%= link_to 'Agregar curso', new_course_path, class: "uk-button uk-button-default" %>
+
+    <hr>
+    <h2 class="uk-text-center">Usuarios que han tomado cursos</h2>
+    <%= area_chart CourseUser.group(:created_at).count %>
+    
+    <div uk-grid>
+        <div class="uk-width-1-2">
+            <hr>
+            <h2 class="uk-text-center">Usuarios</h2>
+            <%= line_chart User.group(:created_at).count %>
+        </div>
+        <div class="uk-width-1-2">
+            <hr>
+            <h2 class="uk-text-center">Cursos terminados</h2>
+            <%= area_chart CourseProgress.where(course_ended: true).group(:course_ended).count %>
+        </div>
+    </div>
 </div>
