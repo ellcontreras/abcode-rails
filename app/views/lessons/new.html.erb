@@ -30,31 +30,33 @@
 
     <div class="uk-margin">
       <%= form.label :es_quiz %>
-      <%= form.select(:is_quiz, options_for_select([["Si", true], ["No", false]], 2), {}, { class: "uk-select"}) %>  
+      <%= form.select(:is_quiz, options_for_select([["No", false], ["Si", true]], 2), {}, { class: "uk-select"}) %>  
     </div>
 
     <div id="is-quiz">
       <h3>Agregar un quiz</h3>
-      <div class="uk-margin">
-        <%= form.text_field :quiz_name, class: "uk-input", placeholder: "Nombre del quiz" %>
-      </div>
-      <div class="uk-margin">
-        <%= form.text_area :quiz_content, class: "uk-textarea", placeholder: "Contenido del quiz" %>
-      </div>
-      <div class="uk-margin">
-        <%= form.text_field :quiz_answer1, class: "uk-input", placeholder: "Respuesta 1" %>
-      </div>
-      <div class="uk-margin">
-        <%= form.text_field :quiz_answer2, class: "uk-input", placeholder: "Respuesta 1" %>
-      </div>
-      <div class="uk-margin">
-        <%= form.text_field :quiz_answer3, class: "uk-input", placeholder: "Respuesta 1" %>
-      </div>
-      <div class="uk-margin">
-        <%= form.label "Cual es la respuesta correcta" %>
-        <%= form.select(:quiz_which_correct,
-          options_for_select([["Respuesta 1", 1], ["Respuesta 2", 2], ["Respuesta 3", 3]]), {}, { class: "uk-select" })%>
-      </div>
+      <%= form.fields_for :quiz do |q| %>
+        <div class="uk-margin">
+          <%= q.text_field :name, class: "uk-input", placeholder: "Nombre del quiz" %>
+        </div>
+        <div class="uk-margin">
+          <%= q.text_area :content, class: "uk-textarea", placeholder: "Contenido del quiz" %>
+        </div>
+        <div class="uk-margin">
+          <%= q.text_field :answer1, class: "uk-input", placeholder: "Respuesta 1" %>
+        </div>
+        <div class="uk-margin">
+          <%= q.text_field :answer2, class: "uk-input", placeholder: "Respuesta 1" %>
+        </div>
+        <div class="uk-margin">
+          <%= q.text_field :answer3, class: "uk-input", placeholder: "Respuesta 1" %>
+        </div>
+        <div class="uk-margin">
+          <%= q.label "Cual es la respuesta correcta" %>
+          <%= q.select(:which_correct,
+            options_for_select([["Respuesta 1", 1], ["Respuesta 2", 2], ["Respuesta 3", 3]]), {}, { class: "uk-select" })%>
+        </div>
+      <% end %>
     </div>
 
     <div class="submit">

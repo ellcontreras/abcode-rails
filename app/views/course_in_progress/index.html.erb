@@ -10,6 +10,11 @@
                 </div>
 
                 <hr>
+                <%= @actual_lesson.is_quiz %>
+
+                <% if @actual_lesson.is_quiz %>
+                  <%= Quiz.where(lesson_id: @actual_lesson.id).first %>
+                <% end %>
 
                 <div>
                     <h3><%= @actual_lesson.name %></h3>

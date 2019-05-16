@@ -2,7 +2,7 @@ module CoursesHelper
     def percentage(course_id)
         courses_user = CourseUser.joins(:course, :course_progress).where(user_id: current_user.id).first
 
-        topics = Topic.joins(:lessons, :course).where(course_id: course_id)
+        topics = Topic.joins(:lessons).where(course_id: course_id)
 
         already_actual_lesson = true
         already_actual_topic = true
@@ -12,8 +12,8 @@ module CoursesHelper
 
         topics.each do |topic|
             if already_actual_lesson
-                number_actual_lesson += 1
                 topic.lessons.each do |lesson|
+                    number_actual_lesson += 1
                     if lesson.id == courses_user.course_progress.first.lesson_id
                         @already_actual_lesson = false
                     end
@@ -30,7 +30,7 @@ module CoursesHelper
 
         topics.each do |topic|
             if topic.course_id == course_id
-                percent = ((number_actual_lesson + number_actual_topic) / (topic.lessons.length + topics.length)) * 100
+                percent = ((number_actual_lesson + number_actual_topic) * 100) / (topic.lessons.length + topics.length + 2)
             end
         end
 

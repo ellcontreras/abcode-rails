@@ -17,8 +17,14 @@
   <hr>
   <h2>Temas del curso</h2>
   <ul class="uk-list uk-list-bullet">
-    <% @course.topics.each do |topic| %>
-      <li><p><%= topic.name %></p></li>
+    <% if is_admin(current_user) %>
+      <% @course.topics.each do |topic| %>
+        <li><%= link_to topic.name, course_topic_path(topic.course_id, topic) %></li>
+      <% end %>
+    <% else %>
+      <% @course.topics.each do |topic| %>
+        <li><p><%= topic.name %></p></li>
+      <% end %>
     <% end %>
   </ul>
 

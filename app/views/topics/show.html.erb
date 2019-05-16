@@ -13,7 +13,7 @@
 
   <h3>Lecciones de este tema</h3>
   <% @lessons.each do |lesson| %>
-    <%= link_to lesson.name, course_topic_lesson_path(@topic.course, @topic, lesson) %>
+    <%= link_to lesson.name, course_topic_lesson_path(@topic.course, @topic, lesson) %><br>
   <% end %>
 
   <hr>

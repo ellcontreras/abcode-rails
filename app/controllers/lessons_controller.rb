@@ -28,23 +28,26 @@ class LessonsController < ApplicationController
 
     @lesson.topic_id = params[:topic_id]
 
-    @lesson.save
+    if @lesson.save
+      if params[:lesson][:is_quiz] === "true"
+        @quiz = Quiz.new
 
-    # if params[:is_quiz]
-    #   @quiz = Quiz.new
+        @quiz.name = params[:lesson][:quiz][:name]
+        @quiz.content = params[:lesson][:quiz][:content]
+        @quiz.answer1 = params[:lesson][:quiz][:answer1]
+        @quiz.answer2 = params[:lesson][:quiz][:answer2]
+        @quiz.answer3 = params[:lesson][:quiz][:answer3]
+        @quiz.which_correct = params[:lesson][:quiz][:which_correct]
 
-    #   @quiz.name = params[:quiz_name]
-    #   @quiz.content = params[:quiz_content]
-    #   @quiz.answer1 = params[:quiz_answer1]
-    #   @quiz.answer2 = params[:quiz_answer2]
-    #   @quiz.answer3 = params[:quiz_answer3]
-    #   @quiz.which_correct = params[:quiz_which_correct]
+        @quiz.lesson_id = @lesson.id
 
-    # end
+        @quiz.save
+      end
+    end
 
     respond_to do |format|
       if @lesson.save
-        format.html { redirect_to course_topic_lessons_path(@lesson), notice: 'La lección se creó correctamente' }
+        format.html { redirect_to course_topic_lessons_path(Lesson.find(@lesson.topic_id).course_id, @lesson), notice: 'La lección se creó correctamente' }
         format.json { render :show, status: :created, location: @lesson }
       else
         format.html { render :new }
@@ -85,10 +88,6 @@ class LessonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
-      params.require(:lesson).permit(:name, :content, :is_quiz)
-    end
-
-    def quiz_params
-      params.require(:quiz).permit(:quiz_name, :quiz_content, :quiz_answer1, :quiz_answer2, :quiz_answer3, :quiz_which_correct)
+      params.require(:lesson).permit(:name, :content, :is_quiz, :quiz, quiz_params: [:name, :content, :answer1, :answer2, :answer3, :which_correct])
     end
 end
