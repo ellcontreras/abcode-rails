@@ -5,7 +5,7 @@ class CreateQuizzes < ActiveRecord::Migration[5.2]
       t.string :answer1
       t.string :answer2
       t.string :answer3
-      t.boolean :which_correct
+      t.integer :which_correct
 
       t.timestamps
     end

@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_231251) do
     t.string "answer1"
     t.string "answer2"
     t.string "answer3"
-    t.boolean "which_correct"
+    t.integer "which_correct"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "lesson_id"

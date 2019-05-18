@@ -47,7 +47,7 @@ class LessonsController < ApplicationController
 
     respond_to do |format|
       if @lesson.save
-        format.html { redirect_to course_topic_lessons_path(Lesson.find(@lesson.topic_id).course_id, @lesson), notice: 'La lección se creó correctamente' }
+        format.html { redirect_to course_topic_lessons_path(Topic.find(@lesson.topic_id).course_id, @lesson), notice: 'La lección se creó correctamente' }
         format.json { render :show, status: :created, location: @lesson }
       else
         format.html { render :new }

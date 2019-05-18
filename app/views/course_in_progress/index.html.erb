@@ -10,11 +10,6 @@
                 </div>
 
                 <hr>
-                <%= @actual_lesson.is_quiz %>
-
-                <% if @actual_lesson.is_quiz %>
-                  <%= Quiz.where(lesson_id: @actual_lesson.id).first %>
-                <% end %>
 
                 <div>
                     <h3><%= @actual_lesson.name %></h3>
@@ -22,6 +17,22 @@
                         <%= @actual_lesson.content.html_safe %>
                     </div>
                 </div>
+
+                <hr>
+                <% if @actual_lesson.is_quiz %>
+                  <h2 class="uk-text-center">Quiz de la lección</h2>
+                  <h3><%= Quiz.where(lesson_id: @actual_lesson.id).first.name %></h3>
+                  <div><%= Quiz.where(lesson_id: @actual_lesson.id).first.content.html_safe %></div>
+
+                  <label class="uk-margin"><input class="uk-radio" tag="1" type="radio" name="answer">
+                    <%= Quiz.where(lesson_id: @actual_lesson.id).first.answer1 %></label><br>
+
+                  <label class="uk-margin"><input class="uk-radio" tag="2" type="radio" name="answer">
+                    <%= Quiz.where(lesson_id: @actual_lesson.id).first.answer2 %></label><br>
+
+                  <label class="uk-margin"><input class="uk-radio" tag="3" type="radio" name="answer">
+                    <%= Quiz.where(lesson_id: @actual_lesson.id).first.answer3 %></label><br>
+                <% end %>
             </div>
         </div>
         <div class="uk-width-1-4 uk-background-primary uk-padding-small">
@@ -59,7 +70,11 @@
             </dl>
         </div>
     </div>
-    <%= link_to 'Siguiente', next_step_path(@course), method: :post, class: "uk-button uk-button-primary uk-margin", remote: false %>
+    <% if @actual_lesson.is_quiz %>
+      <button class="uk-button uk-button-primary uk-margin" id="next-button">Verificar</button>
+    <% else %>
+      <%= link_to 'Siguiente', next_step_path(@course), method: :post, class: "uk-button uk-button-primary uk-margin", remote: false %>
+    <% end %>
 </div>
 <% else %>
   <div class="uk-card uk-card-body uk-card-default uk-text-center uk-margin">
@@ -69,3 +84,34 @@
     <%= link_to 'Visita nuestros otros cursos', courses_path %>
   </div>
 <% end %>
+
+<script>
+    var which_correct = <%= Quiz.where(lesson_id: @actual_lesson.id).first.which_correct %>;
+    var answers = document.getElementsByName("answer");
+    var user_answer = 1;
+
+    var redirect = function(url, method) {
+        var form = document.createElement('form');
+        form.method = method;
+        form.action = url;
+        form.submit();
+    };
+
+    document.getElementById("next-button").addEventListener("click", () => {
+        if (parseInt(user_answer) === parseInt(which_correct)) {
+            document.getElementById("next-button").innerText = "Siguiente";
+            document.getElementById("next-button").addEventListener("click", () => {
+                redirect(<%= next_step_path(@course)%>, 'post');
+            });
+        } else {
+            alert("La respuesta seleccionada es incorrecta");
+        }
+    });
+
+    answers.forEach(answer => {
+        answer.addEventListener("change", (e) => {
+            user_answer = e.target.attributes.tag.value;
+        });
+    })
+    
+</script>
