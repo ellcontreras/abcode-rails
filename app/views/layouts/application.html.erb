@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ABCODE - <%= params[:controller].capitalize %></title>
+    <title>ABCODE - <%= content_for?(:title) ? yield(:title) : 'LMS to learn programming' %> </title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %> 
