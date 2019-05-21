@@ -23,8 +23,6 @@
                 <hr>
                 <% if @actual_lesson.is_quiz %>
                   <h2 class="uk-text-center">Quiz de la lección</h2>
-                  <h3><%= Quiz.where(lesson_id: @actual_lesson.id).first.name %></h3>
-                  <div><%= Quiz.where(lesson_id: @actual_lesson.id).first.content.html_safe %></div>
 
                   <label class="uk-margin"><input class="uk-radio" tag="1" type="radio" name="answer">
                     <%= Quiz.where(lesson_id: @actual_lesson.id).first.answer1 %></label><br>
@@ -92,19 +90,19 @@
     var answers = document.getElementsByName("answer");
     var user_answer = 1;
 
-    var redirect = function(url, method) {
-        var form = document.createElement('form');
-        form.method = method;
-        form.action = url;
-        form.submit();
-    };
-
     document.getElementById("next-button").addEventListener("click", () => {
         if (parseInt(user_answer) === parseInt(which_correct)) {
             document.getElementById("next-button").innerText = "Siguiente";
             document.getElementById("next-button").addEventListener("click", () => {
-                redirect(<%= next_step_path(@course)%>, 'post');
-            });
+                let xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = () => {
+                    location.reload(true)
+                }
+
+                xhttp.open("POST", "<%= next_step_path(@course) %>");
+                xhttp.send();
+                        });
         } else {
             alert("La respuesta seleccionada es incorrecta");
         }
