@@ -92,7 +92,6 @@
         var user_answer = 1;
 
         redirect = (method, url) => {
-            var that = this;
             $.ajax({
                 url: url,
                 data: { authenticity_token: $('[name="csrf-token"]')[0].content},
