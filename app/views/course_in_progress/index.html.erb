@@ -92,14 +92,15 @@
         var user_answer = 1;
 
         redirect = (method, url) => {
-            let xhttp = new XMLHttpRequest();
-
-            xhttp.onreadystatechange = () => {
-                location.reload(true)
-            }
-
-            xhttp.open(method, url);
-            xhttp.send();
+            var that = this;
+            $.ajax({
+                url: url,
+                data: { authenticity_token: $('[name="csrf-token"]')[0].content},
+                method: method,
+                success: function(res) {
+                    location.reload(true)
+                }
+            });
         }
         
         document.getElementById("next-button").addEventListener("click", () => {
