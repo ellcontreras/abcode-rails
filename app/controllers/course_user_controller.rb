@@ -21,7 +21,7 @@ class CourseUserController < ApplicationController
                     puts msg
                 end 
 
-                format.html { redirect_to course_path(params[:id]), notice: 'Se ha agregado el curso a la lista de cursos' }
+                format.html { redirect_to play_course_path(params[:id]), notice: 'Se ha agregado el curso a la lista de cursos' }
             else
                 format.html { render :new }
                 format.json { render json: @course.errors, status: :unprocessable_entity }
