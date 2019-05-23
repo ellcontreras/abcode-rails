@@ -86,36 +86,38 @@
 <% end %>
 
 <script>
-    var which_correct = <%= Quiz.where(lesson_id: @actual_lesson.id).first.which_correct %>;
-    var answers = document.getElementsByName("answer");
-    var user_answer = 1;
+    <% if @actual_lesson.is_quiz %>
+        var which_correct = <%= Quiz.where(lesson_id: @actual_lesson.id).first.which_correct %>;
+        var answers = document.getElementsByName("answer");
+        var user_answer = 1;
 
-    redirect = (method, url) => {
-        let xhttp = new XMLHttpRequest();
+        redirect = (method, url) => {
+            let xhttp = new XMLHttpRequest();
 
-        xhttp.onreadystatechange = () => {
-            location.reload(true)
+            xhttp.onreadystatechange = () => {
+                location.reload(true)
+            }
+
+            xhttp.open(method, url);
+            xhttp.send();
         }
-
-        xhttp.open(method, url);
-        xhttp.send();
-    }
-    
-    document.getElementById("next-button").addEventListener("click", () => {
-        if (parseInt(user_answer) === parseInt(which_correct)) {
-            document.getElementById("next-button").innerText = "Siguiente";
-            document.getElementById("next-button").addEventListener("click", () => {
-                redirect("POST", '<%= next_step_path(@course) %>');
-            })
-        } else {
-            alert("La respuesta seleccionada es incorrecta");
-        }
-    });
-
-    answers.forEach(answer => {
-        answer.addEventListener("change", (e) => {
-            user_answer = e.target.attributes.tag.value;
+        
+        document.getElementById("next-button").addEventListener("click", () => {
+            if (parseInt(user_answer) === parseInt(which_correct)) {
+                document.getElementById("next-button").innerText = "Siguiente";
+                document.getElementById("next-button").addEventListener("click", () => {
+                    redirect("POST", '<%= next_step_path(@course) %>');
+                })
+            } else {
+                alert("La respuesta seleccionada es incorrecta");
+            }
         });
-    })
+
+        answers.forEach(answer => {
+            answer.addEventListener("change", (e) => {
+                user_answer = e.target.attributes.tag.value;
+            });
+        })
+    <% end %>
     
 </script>
