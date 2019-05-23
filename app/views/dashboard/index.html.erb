@@ -3,7 +3,26 @@
 <div class="uk-container uk-margin">
     <h1>Dashboard</h1>
 
+    <%= form_tag dashboard_path, :method => 'get', class: "uk-margin" do %>
+        <%= label_tag "Busqueda de usuarios" %>
+        <%= text_field_tag :user_search, params[:user_search], class: "uk-input", placeholder: "Ingresa el nombre o correo" %>
+        <% if @users %>
+            <div class="uk-card uk-card-body uk-card-default">
+                <dl class="uk-description-list list-divider">
+                    <% @users.each do |user| %>
+                        <dt><%= link_to user.name, user_profile_path(user) %></dt>
+                    <% end %>
+                </dl>
+            </div>
+        <% else %>
+          <h2>No se han encontrado usuarios</h2>
+        <% end %>
+        <%= submit_tag "Buscar", :name => nil, class: "uk-button uk-button-primary" %>
+    <% end %>
+
     <%= link_to 'Agregar curso', new_course_path, class: "uk-button uk-button-default" %>
+
+    <!--Agregar el buscador de usuarios aqui-->
 
     <hr>
     <h2 class="uk-text-center">Usuarios que han tomado cursos</h2>
