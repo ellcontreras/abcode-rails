@@ -66,6 +66,6 @@ footer {
   font-family: "Cabin Sketch", cursive;
 }
 
-a[href="https://www.froala.com/wysiwyg-editor?k=u"] {
-  display: none;
+.fr-wrapper div:first-child a {
+  display: none !important;
 }
