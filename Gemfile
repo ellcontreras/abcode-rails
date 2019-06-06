@@ -75,5 +75,3 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
 gem 'rails-timeago', '~> 2.0'
-
-gem "rb-readline"
